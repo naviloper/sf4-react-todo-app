@@ -1,5 +1,19 @@
 {
+    "name": "react-app",
+    "version": "0.1.0",
+    "dependencies": {
+        "array-move": "^2.1.0",
+        "axios": "^0.19.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-router-dom": "^5.0.1",
+        "react-scripts": "3.0.1",
+        "react-sortable-hoc": "^1.9.1",
+        "uuid": "^3.3.2"
+    },
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.4.4",
         "@symfony/webpack-encore": "^0.27.0",
         "core-js": "^3.0.0",
         "webpack-notifier": "^1.6.0"
@@ -10,6 +24,25 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "react-start": "react-scripts start",
+        "react-build": "react-scripts build",
+        "react-test": "react-scripts test",
+        "react-eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     }
 }
