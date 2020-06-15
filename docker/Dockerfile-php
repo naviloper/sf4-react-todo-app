@@ -1,0 +1,25 @@
+FROM php:fpm-stretch
+
+RUN apt-get update && apt-get install -y
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        zlib1g-dev \
+        libxml2-dev \
+        libzip-dev \
+        curl \
+    && docker-php-ext-install \
+        zip \
+        intl \
+        mysqli \
+        pdo pdo_mysql
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Node 12
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs
+
+COPY ./ /var/www/sf-app
+WORKDIR /var/www/sf-app

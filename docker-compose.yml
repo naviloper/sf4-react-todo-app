@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-nginx
+    volumes:
+      - ./:/var/www/sf-app
+    ports:
+      - 8001:80
+    networks:
+      - sf-app
+  sf-app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-php
+    environment:
+      APP_ENV: dev
+    volumes:
+      - ./:/var/www/sf-app
+    networks:
+      - sf-app
+  mysql:
+    image: mysql
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']
+    environment:
+      MYSQL_DATABASE: sf_db
+      MYSQL_USER: sf_user
+      MYSQL_PASSWORD: sf_password
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ../sf4-react-todo-app_db:/var/lib/mysql
+    networks:
+      - sf-app
+networks:
+  sf-app:
